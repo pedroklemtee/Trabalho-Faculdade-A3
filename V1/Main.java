@@ -1,11 +1,19 @@
 import Models.CarteiraDeVacinacao;
 import Models.Paciente;
+import Models.PostoDeSaude;
 
+import java.security.PrivateKey;
 import java.util.Scanner;
 
 public class Main {
+    
+    private static PostoDeSaude postoDeSaude;
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        
+        registrarPostoDeSaude(scanner);
+        
         int opcao;
 
         do {
@@ -24,25 +32,25 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    registrarPaciente(scanner);
+                    postoDeSaude.registrarPaciente();
                     break;
                 case 2:
-                    registrarVacinacao(scanner);
+                    postoDeSaude.registrarVacinacao();
                     break;
                 case 3:
-                    registrarEnfermeira(scanner);
+                    postoDeSaude.registrarEnfermeira();
                     break;
                 case 4:
-                    removerEnfermeira(scanner);
+                    postoDeSaude.removerEnfermeira();
                     break;
                 case 5:
-                    verEnfermeiras();
+                    postoDeSaude.verEnfermeiras();
                     break;
                 case 6:
-                    verPacientes();
+                    postoDeSaude.verPacientes();
                     break;
                 case 7:
-                    informacoesPosto();
+                    postoDeSaude.informacoesPosto();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -54,5 +62,17 @@ public class Main {
 
         scanner.close();
     }
-    }
+    
+        private static void registrarPostoDeSaude(Scanner scanner) {
+        
+            System.out.println("Cadastro do Posto de Saúde:");
+            System.out.print("Nome: ");
+            String nome = scanner.nextLine();
+            System.out.print("Endereço: ");
+            String endereco = scanner.nextLine();
+
+            postoDeSaude = new PostoDeSaude(nome, endereco);
+            System.out.println("Posto de Saúde cadastrado com sucesso!");
+        }    
+    
 }
