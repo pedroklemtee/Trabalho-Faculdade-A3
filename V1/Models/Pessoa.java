@@ -3,7 +3,7 @@ package Models;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Pessoa {
+public abstract class Pessoa {
     private String nome;
     private LocalDate dataDeNascimento;
     private String cpf;
@@ -11,7 +11,7 @@ public class Pessoa {
     private String endereco;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    public Pessoa(String nome, LocalDate dataDeNascimento, String cpf, String telefone, String endereco) {
+    public  Pessoa(String nome, LocalDate dataDeNascimento, String cpf, String telefone, String endereco) {
         this.nome = nome;
         this.dataDeNascimento = dataDeNascimento;
         this.cpf = cpf;

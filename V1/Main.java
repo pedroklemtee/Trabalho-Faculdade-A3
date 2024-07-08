@@ -1,6 +1,7 @@
 import Models.CarteiraDeVacinacao;
 import Models.Paciente;
 import Models.PostoDeSaude;
+import com.sun.source.tree.CaseTree;
 
 import java.security.PrivateKey;
 import java.util.Scanner;
@@ -51,6 +52,9 @@ public class Main {
                     break;
                 case 7:
                     postoDeSaude.informacoesPosto();
+                    break;
+                case 8:
+                    postoDeSaude.aplicarVacina();
                     break;
                 case 0:
                     System.out.println("Saindo...");
