@@ -3,6 +3,7 @@ package Models;
 import java.util.StringTokenizer;
 
 public class Vacina {
+    
     private String nome;
     private int dosesDisponiveis;
     private String fabricante;
@@ -35,5 +36,14 @@ public class Vacina {
 
     public void setDosesDisponiveis(int dosesDisponiveis) {
         this.dosesDisponiveis = dosesDisponiveis;
+    }
+    
+    @Override
+    public String toString() {
+        return "Vacina{" +
+                "nome='" + nome + '\'' +
+                ", dosesDisponiveis=" + dosesDisponiveis +
+                ", fabricante='" + fabricante + '\'' +
+                '}';
     }
 }

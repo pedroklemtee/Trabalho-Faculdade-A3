@@ -11,7 +11,7 @@ public abstract class Pessoa {
     private String endereco;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    public  Pessoa(String nome, LocalDate dataDeNascimento, String cpf, String telefone, String endereco) {
+    public Pessoa(String nome, LocalDate dataDeNascimento, String cpf, String telefone, String endereco) {
         this.nome = nome;
         this.dataDeNascimento = dataDeNascimento;
         this.cpf = cpf;
@@ -58,4 +58,5 @@ public abstract class Pessoa {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+    
 }

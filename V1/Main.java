@@ -19,13 +19,16 @@ public class Main {
 
         do {
             System.out.println("Menu de Opções:");
-            System.out.println("1. Registrar paciente");
-            System.out.println("2. Registrar vacinação");
-            System.out.println("3. Registrar enfermeira");
-            System.out.println("4. Remover enfermeira");
-            System.out.println("5. Ver enfermeiras");
-            System.out.println("6. Ver pacientes");
-            System.out.println("7. Informações do posto");
+            System.out.println("1. Registrar vacina");
+            System.out.println("2. Registrar enfermeira");
+            System.out.println("3. Remover enfermeira");
+            System.out.println("4. Ver enfermeiras");
+            System.out.println("5. Registrar paciente");
+            System.out.println("6. Remover paciente");
+            System.out.println("7. Ver pacientes");
+            System.out.println("8. Ver carteira de vacinação de paciente especifico");
+            System.out.println("9. Informações do posto");
+            System.out.println("10. Aplicar vacina");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -33,27 +36,33 @@ public class Main {
 
             switch (opcao) {
                 case 1:
-                    postoDeSaude.registrarPaciente();
+                    postoDeSaude.registrarVacina(); 
                     break;
                 case 2:
-                    postoDeSaude.registrarVacinacao();
+                    postoDeSaude.registrarEnfermeira(); // 
                     break;
                 case 3:
-                    postoDeSaude.registrarEnfermeira();
+                    postoDeSaude.removerEnfermeira(); //
                     break;
                 case 4:
-                    postoDeSaude.removerEnfermeira();
+                    postoDeSaude.verEnfermeiras(); //
                     break;
-                case 5:
-                    postoDeSaude.verEnfermeiras();
+                case 5 :
+                    postoDeSaude.registrarPaciente(); //
                     break;
-                case 6:
-                    postoDeSaude.verPacientes();
+                case 6 :
+                    postoDeSaude.removerPaciente(); // 
                     break;
                 case 7:
-                    postoDeSaude.informacoesPosto();
+                    postoDeSaude.verPacientes(); //
                     break;
                 case 8:
+                    postoDeSaude.verCarteiraPaciente(); //
+                    break;
+                case 9:
+                    postoDeSaude.informacoesPosto(); //
+                    break;
+                case 10:
                     postoDeSaude.aplicarVacina();
                     break;
                 case 0:

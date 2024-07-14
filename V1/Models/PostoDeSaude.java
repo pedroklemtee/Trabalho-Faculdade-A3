@@ -33,27 +33,25 @@ public class PostoDeSaude implements IRegistro {
 
     @Override
     public void registrarPaciente(){
-        System.out.println("Sistema de cadastro de paciente:");
-        System.out.println();
+        System.out.println("Sistema de cadastro de paciente: \n");
         System.out.print("Digite o nome do paciente: ");
-        String nome = scanner.nextLine();
+        String nome = scanner.next();
         System.out.print("Digite a data de nascimento (dd-MM-yyyy): ");
-        String dataNascimento = scanner.nextLine();
+        String dataNascimento = scanner.next();
         System.out.print("Digite o CPF: ");
-        String cpf = scanner.nextLine();
+        String cpf = scanner.next();
         System.out.print("Digite o telefone: ");
-        String telefone = scanner.nextLine();
+        String telefone = scanner.next();
         System.out.print("Digite o endereço: ");
-        String endereco = scanner.nextLine();
+        String endereco = scanner.next();
         System.out.print("Digite o sexo (M/F): ");
-        char sexo = scanner.nextLine().charAt(0);
+        char sexo = scanner.next().charAt(0);
         System.out.print("Digite o peso: ");
         double peso = scanner.nextDouble();
         System.out.print("Digite a altura: ");
         double altura = scanner.nextDouble();
-        scanner.nextLine();  // Consumir nova linha
         System.out.print("Digite o tipo sanguíneo: ");
-        String tipoSanguineo = scanner.nextLine();
+        String tipoSanguineo = scanner.next();
         
         var carteiraDeVacinacao = new CarteiraDeVacinacao();
 
@@ -64,7 +62,7 @@ public class PostoDeSaude implements IRegistro {
         System.out.println("Paciente registrado com sucesso!");
     }
 
-    public void registrarVacinacao() {
+    public void registrarVacina() {
         System.out.println("Sistema de cadastro de vacina:");
         System.out.println();
         System.out.println("Nome da nova vacina:");
@@ -109,10 +107,7 @@ public class PostoDeSaude implements IRegistro {
         System.out.println();
         System.out.println("Lista de enfermeiros(as) disponiveis:");
         for (Enfermeira e : enfermeiras){
-            System.out.println("Nome: " + e.getNome());
-            System.out.println("Cpf: " + e.getCpf());
-            System.out.println("Turno: " + e.getTurno());
-            System.out.println();
+            e.toString();
         }
         System.out.println("Digite o cpf do(a) enfermeiro(a) que deseja remover: ");
         String cpf = scanner.next();
@@ -145,7 +140,59 @@ public class PostoDeSaude implements IRegistro {
     }
 
     public void verPacientes() {
-        System.out.println("Ver pacientes");
+        System.out.println("Sistema de vizualizar pacientes registrados: ");
+        if(pacientes.stream().count() <= 0 ) {
+            System.out.println("Não há nenhum paciente registrado ainda!");
+        }
+        for (Paciente p : pacientes) {
+            System.out.println(p.toString());
+        }
+    }
+    
+    public void verCarteiraPaciente ()  {
+        System.out.println("Sistema de vizualizar carteira de paciente: ");
+        System.out.println("Pacientes registrados: ");
+        for (Paciente paciente : pacientes) {
+            System.out.println("Nome: " + paciente.getNome());
+            System.out.println("Cpf: " + paciente.getCpf());
+        }
+        System.out.println("Digite o cpf do paciente que deseja ver a carteira de vacinação: ");
+        
+        String cpf = scanner.next();
+        
+        Paciente paciente = findPaciente(cpf);
+        
+        System.out.println("Carteira de vacinação do paciente " + paciente.getNome() + " : ");
+        paciente.getCarteiraDeVacinacao().mostrarDadosVacinas();
+    }
+
+    public void removerPaciente() {
+        System.out.println("Sistema de remoção de pacientes:");
+        System.out.println();
+        System.out.println("Lista de pacientes disponiveis:");
+        for (Paciente p : pacientes){
+            p.toString();
+        }
+        System.out.println("Digite o cpf do(a) paciente que deseja remover: ");
+        String cpf = scanner.next();
+
+        Paciente paciente = findPaciente(cpf);
+        if (paciente != null) {
+            pacientes.remove(paciente);
+            System.out.println("Paciente removido com sucesso!");
+        } else {
+            System.out.println("Paciente não encontrado!");
+        }
+    }
+
+    private Paciente findPaciente(String cpf){
+        for(Paciente p : pacientes){
+            if (p.getCpf().equals(cpf)){
+                System.out.println("Paciente encontrado no sistema de registros!");
+                return p;
+            }
+        }
+        return null;
     }
     
     public void informacoesPosto(){
@@ -155,6 +202,30 @@ public class PostoDeSaude implements IRegistro {
     }
     
     public void aplicarVacina(){
+        System.out.println("Sistema de aplicar vacina:");
+        for (Paciente paciente : pacientes) {
+            System.out.println(paciente.getNome());
+            System.out.println(paciente.getCpf());
+        }
+        System.out.println("Digite o cpf do paciente que deseja aplicar: ");
+        String cpf = scanner.next();
+        Paciente paciente = findPaciente(cpf);
+        System.out.println("Digite o nome da vacina que deseja aplicar: ");
+        for (Vacina v : vacinas){
+            v.toString();
+        }
+        String vacina = scanner.next();
+        Vacina vacinaEcontrada = findVacina(vacina);
         
+        paciente.getCarteiraDeVacinacao().adicionarVacina(vacinaEcontrada);
+    }
+    
+    private Vacina findVacina(String name){
+        for (Vacina v : vacinas){
+            if(v.getNome().equals(name)) {
+                return v;
+            }
+        }
+        return null;
     }
 }

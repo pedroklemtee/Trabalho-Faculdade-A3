@@ -1,7 +1,10 @@
 package Models;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Paciente extends Pessoa {
     private char sexo;
@@ -21,18 +24,19 @@ public class Paciente extends Pessoa {
         this.tipoSanguineo = tipoSanguineo;
         this.carteiraDeVacinacao = carteiraDeVacinacao;
     }
+    
+    public CarteiraDeVacinacao getCarteiraDeVacinacao() {
+        return carteiraDeVacinacao;
+    }
 
     @Override
     public String toString() {
-        return  "------------------------------- \n" +
-                "Dados do Paciente:" + "\n" +
-                "------------------------------- \n" +
+        return  
                 "Nome:" + this.getNome() + "\n" +
                 "Data de Nascimento:" + this.getDataDeNascimento() + "\n" +
                 "Peso:" + peso + "\n" +
                 "Altura:" + altura + "\n" +
                 "Tipo sanguíneo:" + tipoSanguineo + "\n" +
-                "sexo:" + sexo + "\n" +
-                "------------------------------- \n";
+                "Sexo:" + sexo + "\n";
     }
 }
